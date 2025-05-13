@@ -1,8 +1,7 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// TODO(CillianMyles): Add librarydescription
 library;
 
-export 'src/super_dates_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/date_time_extensions.dart';
+export 'src/local_date.dart';
+export 'src/local_date_time.dart';
+export 'src/utc_date_time.dart';
