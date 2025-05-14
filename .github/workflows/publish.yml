@@ -1,5 +1,5 @@
 ---
-name: publish
+name: Publish to pub.dev
 
 on:
   workflow_dispatch:
