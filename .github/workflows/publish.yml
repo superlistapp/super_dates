@@ -9,13 +9,6 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📚 Git Checkout
-        uses: actions/checkout@v4
-      - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1
-      - name: 📦 Install Dependencies
-        run: dart pub get
-      - name: 📢 Publish
-        run: dart pub publish --force
+    permissions:
+      id-token: write # required for authentication using OIDC
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
