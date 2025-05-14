@@ -15,7 +15,7 @@ jobs:
       - name: 🕰️ Set Timezone
         uses: szenius/set-timezone@v2.0
         with:
-          timezoneLinux: "Europe/Dublin"
+          timezoneLinux: "Europe/Dublin" # to test daylight savings, since UTC by default
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
       - name: 🎯 Setup Dart
@@ -26,5 +26,7 @@ jobs:
         run: dart format . --set-exit-if-changed
       - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings
+      - name: 🔍 Check Timezone
+        run: dart run bin/check_timezone.dart
       - name: 🧪 Run Tests
         run: dart test
