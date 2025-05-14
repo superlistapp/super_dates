@@ -11,6 +11,10 @@ on:
     branches:
       - "main"
 
+concurrency:
+  group: ci-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   ci:
     runs-on: ubuntu-latest
