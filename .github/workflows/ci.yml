@@ -12,6 +12,10 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - name: 🕰️ Set Timezone
+        uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: "Europe/Dublin"
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
       - name: 🎯 Setup Dart
