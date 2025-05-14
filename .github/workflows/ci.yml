@@ -1,5 +1,5 @@
 ---
-name: ci
+name: CI Checks
 
 on:
   workflow_dispatch:
