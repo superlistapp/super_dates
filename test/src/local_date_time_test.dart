@@ -616,6 +616,8 @@ void main() {
       });
 
       test('days before (crossing daylight savings boundary)', () async {
+        // This test only passes in a timezone that applies daylight savings, which
+        // is why we manually set the CI machine's timezone as part of the workflow.
         expect(
           LocalDateTime(
             2023,
@@ -631,6 +633,8 @@ void main() {
       });
 
       test('days after (crossing daylight savings boundary)', () async {
+        // This test only passes in a timezone that applies daylight savings, which
+        // is why we manually set the CI machine's timezone as part of the workflow.
         expect(
           LocalDateTime(
             2023,
