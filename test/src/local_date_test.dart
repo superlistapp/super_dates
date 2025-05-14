@@ -35,6 +35,10 @@ void main() {
       });
 
       test('before min local date', () async {
+        final now = DateTime.now();
+        print(
+          'timezone: "${now.timeZoneName}" - offset: ${now.timeZoneOffset}',
+        );
         expect(() => LocalDate(-271821, 4, 20), throwsArgumentError);
       });
 
@@ -100,6 +104,10 @@ void main() {
       });
 
       test('before min local date', () async {
+        final now = DateTime.now();
+        print(
+          'timezone: "${now.timeZoneName}" - offset: ${now.timeZoneOffset}',
+        );
         expect(
           () => LocalDate.fromString('-271821-04-20'),
           throwsArgumentError,

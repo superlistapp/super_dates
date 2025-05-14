@@ -616,6 +616,10 @@ void main() {
       });
 
       test('days before (crossing daylight savings boundary)', () async {
+        final now = DateTime.now();
+        print(
+          'timezone: "${now.timeZoneName}" - offset: ${now.timeZoneOffset}',
+        );
         expect(
           LocalDateTime(
             2023,
@@ -631,6 +635,10 @@ void main() {
       });
 
       test('days after (crossing daylight savings boundary)', () async {
+        final now = DateTime.now();
+        print(
+          'timezone: "${now.timeZoneName}" - offset: ${now.timeZoneOffset}',
+        );
         expect(
           LocalDateTime(
             2023,
