@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0](https://github.com/superlistapp/super_dates/compare/v0.0.2...v1.0.0) (2025-05-21)
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([9b769ff](https://github.com/superlistapp/super_dates/commit/9b769ff53e433601e72c8c24a1e8b8300d82bc4e))
+
 ## [0.0.2](https://github.com/superlistapp/super_dates/compare/v0.0.2...v0.0.2) (2025-05-14)
 
 
