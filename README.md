@@ -3,9 +3,9 @@
 **Stop time/timezone bugs before they happen**. SuperDates has three different temporal types for three different needs:
 
 ```dart
-LocalDate(2025, 5, 21)            // Just a date (no time, no timezone drama)
-LocalDateTime(2025, 5, 21, 9, 0)  // User-facing timestamp (system timezone)
-UtcDateTime(2025, 5, 21, 9, 0)    // Server/collaboration timestamp (UTC)
+LocalDate(2025, 5, 21);            // Just a date (no time, no timezone drama)
+LocalDateTime(2025, 5, 21, 9, 0);  // User-facing timestamp (system timezone)
+UtcDateTime(2025, 5, 21, 9, 0);    // Server/collaboration timestamp (UTC)
 ```
 
 ## The Problem
@@ -18,7 +18,7 @@ void logEvent(DateTime dateTime) {
   // to UTC if the DateTime is local, because UTC is what we want here.
 }
 
-DateTime(2025, 5, 21)       // Is this a date or a date-time?
+DateTime(2025, 5, 21)        // Is this a date or a date-time?
 DateTime.parse('2025-05-21') // Is this a date or a date-time?
 ```
 
@@ -32,7 +32,7 @@ void scheduleReminder(LocalDateTime reminderTime) { ... }
 void logEventToServer(UtcDateTime timestamp) { ... }
 void displayToUser(LocalDate userDate) { ... }
 
-// The compiler catches your mistakes
+// Types are validated at compile-time
 scheduleReminder(LocalDate(2025, 6, 15));  // ❌ Compile error!
 logEventToServer(LocalDateTime.now());     // ❌ Compile error!
 displayToUser(UtcDateTime.now());          // ❌ Compile error!
@@ -42,11 +42,11 @@ displayToUser(UtcDateTime.now());          // ❌ Compile error!
 
 ```yaml
 dependencies:
-  superdates: ^1.0.0
+  super_dates: ^1.0.0
 ```
 
 ```dart
-import 'package:superdates/superdates.dart';
+import 'package:super_dates/super_dates.dart';
 
 // Pure dates for birthdays, deadlines, holidays
 final birthday = LocalDate(2025, 12, 25);

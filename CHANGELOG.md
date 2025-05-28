@@ -5,7 +5,7 @@
 
 ### Features
 
-* Expose 3 temporal types: LocalDate, LocalDateTime, UtcDateTime
+* Expose three temporal types: `LocalDate`, `LocalDateTime`, `UtcDateTime`
 * Include extentions to convert to/from Dart core DateTimes
 
 ### Miscellaneous Chores
