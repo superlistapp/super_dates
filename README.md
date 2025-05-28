@@ -1,56 +1,73 @@
 # SuperDates ⏱️
 
-> A minimal typesafe DateTime API extension for Dart.
+**Stop time/timezone bugs before they happen**. SuperDates has three different temporal types for three different needs:
 
-## Why?
+```dart
+LocalDate(2025, 5, 21)            // Just a date (no time, no timezone drama)
+LocalDateTime(2025, 5, 21, 9, 0)  // User-facing timestamp (system timezone)
+UtcDateTime(2025, 5, 21, 9, 0)    // Server/collaboration timestamp (UTC)
+```
 
-Dates and date-times are different things, and mixing them leads to bugs. This package provides a type-safe way to handle:
-- Pure dates (year, month, day)
-- Local date-times (with system timezone)
-- UTC date-times (with explicit timezone)
+## The Problem
+
+Dart's DateTime mixes Dates, DateTimes, and UTC DateTimes together.
+
+```dart
+void logEvent(DateTime dateTime) {
+  // Is dateTime local or UTC? We need to check for `.isUtc`, then convert
+  // to UTC if the DateTime is local, because UTC is what we want here.
+}
+
+DateTime(2025, 5, 21)       // Is this a date or a date-time?
+DateTime.parse('2025-05-21') // Is this a date or a date-time?
+```
+
+## How types save your as... assets
+
+SuperDates introduces type-safe temporal types that are validated by the compiler at compile-time.
+
+```dart
+// Your code defines what kind of datetimes are expected
+void scheduleReminder(LocalDateTime reminderTime) { ... }
+void logEventToServer(UtcDateTime timestamp) { ... }
+void displayToUser(LocalDate userDate) { ... }
+
+// The compiler catches your mistakes
+scheduleReminder(LocalDate(2025, 6, 15));  // ❌ Compile error!
+logEventToServer(LocalDateTime.now());     // ❌ Compile error!
+displayToUser(UtcDateTime.now());          // ❌ Compile error!
+```
+
+## Quick Start
+
+```yaml
+dependencies:
+  superdates: ^1.0.0
+```
+
+```dart
+import 'package:superdates/superdates.dart';
+
+// Pure dates for birthdays, deadlines, holidays
+final birthday = LocalDate(2025, 12, 25);
+print(birthday); // 2025-12-25
+
+// Local times for user-facing timestamps  
+final appointment = LocalDateTime(2025, 12, 25, 10, 30);
+print(appointment); // 2025-12-25 10:30:00.000
+
+// UTC times for server logs, API timestamps
+final logEntry = UtcDateTime.now();
+print(logEntry.toIso8601String()); // 2025-05-28T14:30:00.000Z
+```
 
 ## Features
 
-- Type-safe date handling
+- Type-safe date and date-time handling
 - Clear separation between dates and date-times
 - Explicit UTC vs Local time handling
 - Easy conversion between types
 - Integration with Dart's core DateTime
-
-## Usage Examples
-
-```dart
-  // Pure Dates
-  final localDate = LocalDate(2025, 5, 21);
-  print(localDate.toString()); // 2025-05-21
-  print(localDate == LocalDate(2025, 5, 21)); // true
-  LocalDate(2025, 5, 21, 12); // compile error
-  LocalDate(2025, 5, 21).toIso8601String(); // compile error
-  LocalDate(2025, 5, 21).hour; // compile error
-  LocalDate.fromString('2025-05-21'); // works
-  LocalDate.fromIso8601String('2025-05-21T12:34:56.789Z'); // compile error
-  LocalDate.fromString('2025-05-21 12:34:56.789'); // runtime error
-  print(localDate.toLocalDateTime().runtimeType); // LocalDateTime
-  print(localDate.toUtcDateTime().runtimeType); // UtcDateTime
-  print(localDate.toCoreLocal().runtimeType); // DateTime
-  print(localDate.toCoreUtc().runtimeType); // DateTime
-
-  // DateTimes based on the local timezone
-  final localDateTime = LocalDateTime(2025, 5, 21, 12, 34, 56, 789, 123);
-  print(localDateTime.toString()); // 2025-05-21 12:34:56.789123
-  print(
-    localDateTime == LocalDateTime(2025, 5, 21, 12, 34, 56, 789, 123),
-  ); // true
-  LocalDateTime.fromIso8601String('2025-05-21 12:34:56.789'); // works
-  LocalDateTime.fromIso8601String('2025-05-21T12:34:56.789Z'); // runtime error
-
-  // DateTimes based on UTC
-  final utcDateTime = UtcDateTime(2025, 5, 21, 12, 34, 56, 789, 123);
-  print(utcDateTime.toIso8601String()); // 2025-05-21T12:34:56.789123Z
-  print(utcDateTime == UtcDateTime(2025, 5, 21, 12, 34, 56, 789, 123)); // true
-  UtcDateTime.fromIso8601String('2025-05-21T12:34:56.789Z'); // works
-  UtcDateTime.fromIso8601String('2025-05-21 12:34:56.789'); // runtime error
-```
 
 ## Motivation
 Dates and date-times are different things. 
