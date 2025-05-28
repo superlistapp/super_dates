@@ -18,8 +18,8 @@ void logEvent(DateTime dateTime) {
   // to UTC if the DateTime is local, because UTC is what we want here.
 }
 
-DateTime(2025, 5, 21)        // Is this a date or a date-time?
-DateTime.parse('2025-05-21') // Is this a date or a date-time?
+DateTime(2025, 5, 21);         // Is this a date or a date-time?
+DateTime.parse('2025-05-21');  // Is this a date or a date-time?
 ```
 
 ## How types save your as... assets
