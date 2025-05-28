@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/superlistapp/super_dates/compare/v0.0.2...v1.0.0) (2025-05-28)
+
+
+### Features
+
+* Expose three temporal types: `LocalDate`, `LocalDateTime`, `UtcDateTime`
+* Include extentions to convert to/from Dart core DateTimes
+
+### Miscellaneous Chores
+
+* Add documentation
+
 ## [0.0.2](https://github.com/superlistapp/super_dates/compare/v0.0.2...v0.0.2) (2025-05-14)
 
 
